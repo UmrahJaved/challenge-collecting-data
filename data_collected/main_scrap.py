@@ -1,6 +1,7 @@
 import time 
 import os
 import re
+import math
 
 from bs4 import BeautifulSoup
 from lxml import html
@@ -22,6 +23,9 @@ class Immovlan():
         self.soup = BeautifulSoup(r.content, "lxml")
 
     def request(self):
+        """
+        Extracting all the links of the items listed on the page (ImmoVlan) 
+        """
         search_results_a = []
         if self.links == None:
             self.links = []
@@ -34,12 +38,21 @@ class Immovlan():
             self.links.append(x)
     
     def nb_of_page(self):
-        max_result = self.soup.find_all("div", attrs={"class":"col-12 mb-2"})
-        nb_page = []
-        for elem in max_result:
-            page = elem.text.split()
-            nb_page.append(page[0])
-        print(nb_page)
+        """
+        Getting the nomber of pages needed to extract all the information (max 20)
+        """
+        soup_result = self.soup.find_all("div", attrs={"class":"col-12 mb-2"})
+        for elem in soup_result:
+            page = int(elem.text.split()[0])
+        if page == 0:
+            max_page = 0
+        elif page <= 20:
+            max_page = 1
+        elif page >= 400:
+            max_page = 20
+        else:
+            max_page = math.ceil((page / 20))
+        return max_page
 
     def loop_postcode(self):
         pass
@@ -49,4 +62,4 @@ class Immovlan():
 url_1 = "https://immo.vlan.be/fr/immobilier?transactiontypes=a-vendre,en-vente-publique&towns=1450&noindex=1&page=1"
 
 test = Immovlan(url_1)
-test.nb_of_page()
+print(test.nb_of_page())
