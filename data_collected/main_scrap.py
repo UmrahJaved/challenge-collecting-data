@@ -52,7 +52,7 @@ class Immovlan():
             x = links.get("href")
             print(x)
             self.links.append(x)
-    
+
     def nb_of_page(self):
         """
         Getting the nomber of pages needed to extract all the information (max 20)
@@ -112,26 +112,43 @@ class Immovlan():
         print(list_right)
         print(list_left)
 
-def generating_all_main_page_links():
-    """
-    dumping each links based on zipcode and max page into a json file
-    based on dict_max_page.json file that contain the link for each postcode and the max_page. 
-    """
-    list_of_all_main = []
-    path_file_jason = os.path.join(os.path.abspath(''), "dict_max_page.json")
-    with open(path_file_jason, "r") as file:
-        txt = file.read()
-        new_dict = json.loads(txt)
-        # pprint.pp(new_dict)
-    for key, value in new_dict.items():
-        if value == 1:
-            list_of_all_main.append(key)
-        else:
-            for x in range(1,value+1):
-                list_of_all_main.append(key[:-1]+f"{x}")
-    path_final_links = os.path.join(os.path.abspath(''), "final_links.json")
-    print(len(list_of_all_main))
-    with open(path_final_links, "w") as file:
-        json.dump(list_of_all_main, file)
+    def generating_all_main_page_links(self):
+        """
+        dumping each links based on zipcode and max page into a json file
+        based on dict_max_page.json file that contain the link for each postcode and the max_page. 
+        """
+        self.list_of_all_main = []
+        path_file_jason = os.path.join(os.path.abspath(''), "dict_max_page.json")
+        with open(path_file_jason, "r") as file:
+            txt = file.read()
+            new_dict = json.loads(txt)
+            # pprint.pp(new_dict)
+        for key, value in new_dict.items():
+            if value == 1:
+                self.list_of_all_main.append(key)
+            else:
+                for x in range(1,value+1):
+                    self.list_of_all_main.append(key[:-1]+f"{x}")
+        path_final_links = os.path.join(os.path.abspath(''), "final_links.json")
+        print(len(self.list_of_all_main))
+        with open(path_final_links, "w") as file:
+            json.dump(self.list_of_all_main, file)
 
-generating_all_main_page_links()
+
+    def item_links(self):
+        """
+        extracting all links from all pages
+        """
+        all_information = []
+        for element in self.list_of_all_main:
+            r = requests.get(element, headers=self.headers) 
+            soup = BeautifulSoup(r.content,"lxml")
+            sub_soup = soup.find_all("div", attrs= {"class":"col-lg-5 card-image"})
+            for elem in sub_soup:
+                all_information.append(elem.find("a"))
+            for links in all_information:
+                x = links.get("href")
+                with open("item_links.txt","a") as file:
+                    file.write(f"{x}\n")
+            time.sleep(random.randint(1,4))   
+
