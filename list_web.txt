@@ -1,8 +1,0 @@
-## List of website that we can scrap. 
-
-https://www.immoweb.be/fr 
-https://immo.vlan.be/fr 
-https://immoelissa.be/
-https://www.zimmo.be/fr/
-https://www.logic-immo.be/fr/
-
