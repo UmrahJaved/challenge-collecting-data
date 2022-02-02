@@ -65,7 +65,7 @@ class Generating_links():
             return math.ceil((total_res_postcode / 20))
 
 
-    def generating_max_page_each_postcodes(self) -> Dict[str:int]:
+    def generating_max_page_each_postcodes(self):
         """
         This method allows us to make a dictionnary with the working
         url for each postcode as index and the max page as value. 
@@ -126,3 +126,22 @@ class Generating_links():
                     file.write(f"{x}\n")
                 all_information = []
             time.sleep(random.randint(1,3))
+
+    def dividing_all_items_links_into_8(self):
+        """
+        This method allows us to divide the file containing
+        all items links into 8 smaller files. 
+        """
+        lines_per_file = 2340 
+        smallfile = None
+        with open(self.path_all_links, "r") as bigfile:
+            for lineno, line in enumerate(bigfile):
+                if lineno % lines_per_file == 0:
+                    if smallfile:
+                            smallfile.close()
+                    small_filename = 'divided_items_{}.txt'.format(lineno + lines_per_file)
+                    path_small_items = os.path.join(path_ressources_file, small_filename)
+                    smallfile = open(path_small_items, "w")
+                smallfile.write(line)
+            if smallfile:
+                smallfile.close()
