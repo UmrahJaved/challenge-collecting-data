@@ -1,4 +1,4 @@
-# challenge-collecting-data
+# Challenge-Collecting-Data
 # Web Scraping Data from Immovlan
 
 ![image](https://user-images.githubusercontent.com/96992159/151995717-99281793-72ae-48f0-b679-e000e25b4905.png)
@@ -9,15 +9,13 @@ From class `Immovlan` , we collected URLs of houses and apartments based on thei
 
 ### Prerequisites
 
- [![Python][Python-shield]][Python-url] -> Python 3.10
+- Python 3.10
 
- [![BeautifulSoup][BeautifulSoup-shield]][BeautifulSoup-url]
-
- [![Pandas][Pandas-shield]][Pandas-url]
- 
- [![Requests][Requests-shield]][Requests-url]
- 
- [![math][math-shield]][math-url]
+ Third Party Libraries:
+ - BeautifulSoup
+ - Pandas
+ - Requests
+ - Maths
 
 ## Immovlan- URL extraction
 
@@ -40,10 +38,13 @@ headers_agent = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.
         r = requests.get(url, headers=headers_agent)
         soup = BeautifulSoup(r.content, "lxml")
 ```
-
+\n
+\n
 
 Following that, we calculated the number of pages for each postcode (Each search on Immovlan is limited to 400 items with 20 per page). All the urls for all pages based on zipcodes are extracted and stored in `dict_max_page.json`. 
 For better understanding and easy extraction of data, we stored all URLs in a list `self.list_all_mains = []` in `all_mains_links.json`.
+\n
+\n
 
 
 
@@ -51,6 +52,8 @@ For better understanding and easy extraction of data, we stored all URLs in a li
 
 ![Capture](https://user-images.githubusercontent.com/96992159/152135668-8c37620c-de48-4521-89f6-7417b5fa2fb6.PNG)
 
+\n
+\n
 
 With loop on each link stored in the all_mains_links.json, we extracted the soup in order to get the links of all items in a list `all_information`.
 
