@@ -15,12 +15,9 @@ From class `Immovlan` , we collected URLs of houses and apartments based on thei
 ## Immovlan- URL extraction
 -----------------------------------------------------------------------------------------------------------
 Using all zipcodes of Belgium from `zipcode.txt`, we are creating URL for each postcode in Belgium.
-
-"""
-
+````
 for zip in belgian_postcodes:
             self.main_links_postcodes.append(f"https://immo.vlan.be/en/real-estate?transactiontypes=for-sale,in-public-sale&towns={zip}&propertytypes=house,flat&noindex=1&page=1"
-
-"""
+```
 
 
