@@ -1,0 +1,25 @@
+'Locality'
+'Type of Property'
+'Subtype of property' : None 
+'Price'
+'Monthly annuity'
+'Number of bedrooms'
+'Livable surface'
+'Kitchen equipment' ----- fully equipped, super equipped, partially equipped ----- binary
+'Furnished'
+'Gas': Change binary
+'Terrace'
+'Surface Terrace'
+'Garden'
+'Surface of Garden'
+'Number of facades',
+'Swimming pool' : Change binary
+'Total surface'
+'State of the property'
+'Build Year'
+'Number of bathrooms'
+'Number of toilets'
+'Orientation of the front facade'
+'Number of parking places (outdoor)'
+
+
