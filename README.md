@@ -106,5 +106,5 @@ house_features = {}
 
 By applying loop on every advertisement on the webpage, we scrapped all the features about the property.
 
-Finally, using pool from multiprocessing, we extracted all of the raw data from all the advertisements.
+Finally, using pool from multiprocessing, we extracted all of the raw data from all the advertisements, clean it and transfer it into csv file.
 
