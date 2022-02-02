@@ -19,7 +19,7 @@ From class `Immovlan` , we collected URLs of houses and apartments based on thei
 
 ## Immovlan- URL extraction
 
-Using all zipcodes of Belgium from `zipcode.txt`, we have created URL for each postcode in Belgium.
+In order to extract URLs from "Immovlan". We used the main link to generate different URLs to extract information about houses and appartments. We collected all zipcodes of Belgium in file name `zipcode.txt`and created unique URL for each postcode in Belgium.
 
 ```
 for zip in belgian_postcodes:
@@ -27,10 +27,10 @@ for zip in belgian_postcodes:
 ```
 
 
+With "BeautifulSoup" and "requests"  library, we are requesting website make us extract data from the website.We specified "user-agents" of the browser as header when url requests are being made (So that we won't be blocked from the website :))
 
+We used "BeautifulSoup" for web scraping as it is more user-friendly, more readable and allows us to learn faster and begin web scraping easily.
 
-We used "BeautifulSoup" for web scraping as it is more user-friendly, more readable and allows us to learn faster and begin web scraping easily. With "requests" library, we extract the information. 
-* Specified "user-agents" as header when url requests are being made (So that we won't be blocked from the website :))
 
 
 
@@ -43,7 +43,8 @@ headers_agent = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.
 
 
 
-Following that, we calculated the number of pages for each postcode (Each search on Immovlan is limited to 400 items with 20 per page). All the urls for all pages based on zipcodes are extracted and stored in `dict_max_page.json`. 
+Following that, we calculated the number of pages for each postcode (Each search on Immovlan is limited to 400 items with 20 per page). All the urls for all pages based on zipcodes are extracted and stored in a json file `dict_max_page.json`. 
+
 For better understanding and easy extraction of data, we stored all URLs in a list `self.list_all_mains = []` in `all_mains_links.json`.
 
 
@@ -55,7 +56,7 @@ For better understanding and easy extraction of data, we stored all URLs in a li
 
 
 
-With loop on each link stored in the all_mains_links.json, we extracted the soup in order to get the links of all items in a list `all_information`.
+With loop on each link stored in the all_mains_links.json, we extracted the soup to get the links of all advertisement on every webpage and stored it in a list `all_information`.
 
 
 
