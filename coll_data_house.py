@@ -55,10 +55,10 @@ class DataExtraction:
 
 my_test = DataExtraction()
 # my_test.extract_single_page('https://immo.vlan.be/en/detail/residence/for-sale/9090/melle/rbe04276')
-filepath = os.path.join(os.path.abspath(''), Path("ressources/divided_items"))
+filepath = os.path.join(os.path.abspath(''), Path("ressources/divided_items_"))
 line_per_file = 2340
 file_list = []
-for i in range(1, 3):
+for i in range(1, 9):
     file_list.append(f"{filepath}{i*line_per_file}.txt")
 
 
