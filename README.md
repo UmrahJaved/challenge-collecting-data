@@ -16,6 +16,8 @@ From class `Immovlan` , we collected URLs of houses and apartments based on thei
   - Pandas
   - Requests
   - Maths
+  - Matpotlib
+  - Multiprocessing
 
 ## Immovlan- URL extraction
 
@@ -75,4 +77,33 @@ For better understanding and easy extraction of data, we stored all URLs in a li
 With loop on each link stored in the all_mains_links.json, we extracted the soup to get the links of all advertisement on every webpage and stored it in a list `all_information`.
 
 
+# Data Extraction from webpages
 
+In this class, we are preparing a dictionary with its keys as the features of the house and value contains the information about each house. The values are extracted from the URL of the page and as well as from the information on the webpage.
+
+
+--------------------------------------------------------------------------------------------------------------------------
+
+
+```
+house_features = {}
+        for locality in soup.find_all("span", attrs={"class": "city-line pl-1"}):
+            house_features['Locality'] = locality.text
+        for titleblock in soup.find_all("nav", attrs={"class": "my-2 d-none d-md-flex"}):
+            types_of_prop = titleblock.find_all("a", attrs={})
+            house_features['Type of property'] = types_of_prop[1].get("href").split("/")[5]
+            house_features['Subtype of property'] = types_of_prop[3].get("href").split("/")[5]
+        for price in soup.find_all("span", attrs={"class": "d-block price-label"}):
+            house_features['Price'] = (price.text).encode('ascii', 'ignore').decode("utf-8").strip()
+        for row in soup.find_all("div", attrs={"class": "section-row"}):
+            value_right = row.find("div", attrs={"class": "col-4 text-right"})
+            value_left = row.find("div", attrs={"class": "col-8"})
+            if value_right is not None and value_left is not None:
+                house_features[value_left.text] = value_right.text
+        return house_features
+ ```
+-------------------------------------------------------------------------------------------------------------------------------------
+
+By applying loop on every advertisement on the webpage, we scrapped all the features about the property.
+
+Finally, using pool from multiprocessing, we extracted all of the raw data from all the advertisements.
