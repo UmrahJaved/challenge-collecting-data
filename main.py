@@ -65,7 +65,7 @@ class Generating_links():
             return math.ceil((total_res_postcode / 20))
 
 
-    def generating_max_page_each_postcodes(self) -> dict[str:int]:
+    def generating_max_page_each_postcodes(self) -> Dict[str:int]:
         """
         This method allows us to make a dictionnary with the working
         url for each postcode as index and the max page as value. 
