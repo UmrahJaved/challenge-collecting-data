@@ -28,8 +28,12 @@ for zip in belgian_postcodes:
             self.main_links_postcodes.append(f"https://immo.vlan.be/en/real-estate?transactiontypes=for-sale,in-public-sale&towns{zip}&propertytypes=house,flat&noindex=1&page=1"
 ```
 
+
+
 We used "BeautifulSoup" for web scraping as it is more user-friendly, more readable and allows us to learn faster and begin web scraping easily. With "requests" library, we extract the information. 
 * Specified "user-agents" as header when url requests are being made (So that we won't be blocked from the website :))
+
+
 
 ```
 headers_agent = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"}
@@ -40,6 +44,9 @@ headers_agent = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.
 
 Following that, we calculated the number of pages for each postcode (Each search on Immovlan is limited to 400 items with 20 per page). All the urls for all pages based on zipcodes are extracted and stored in `dict_max_page.json`. 
 For better understanding and easy extraction of data, we stored all URLs in a list `self.list_all_mains = []` in `all_mains_links.json`.
+
+
+
 
 
 ![Capture](https://user-images.githubusercontent.com/96992159/152135668-8c37620c-de48-4521-89f6-7417b5fa2fb6.PNG)
